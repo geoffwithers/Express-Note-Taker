@@ -10,15 +10,15 @@ router.get('/api/notes', async (req, res) => {
 
 // This code creates the post request to this routes end point of: "/api/notes"
 router.post('/api/notes', (req, res) => {
-  const dbJson = JSON.parse(fs.readFileSync("db/db.json","utf8"));
-  const newFeedback = {
+  const databaseJson = JSON.parse(fs.readFileSync("db/db.json","utf8"));
+  const newNote = {
     title: req.body.title,
     text: req.body.text,
     id: uuidv4(),
   };
-  dbJson.push(newFeedback);
-  fs.writeFileSync("db/db.json",JSON.stringify(dbJson));
-  res.json(dbJson);
+  databaseJson.push(newNote);
+  fs.writeFileSync("db/db.json",JSON.stringify(databaseJson));
+  res.json(databaseJson);
 });
 
 
